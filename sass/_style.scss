@@ -1,0 +1,434 @@
+$transition: .4s;
+$underline-height: .35vh;
+
+@mixin translation-and-nav {
+    color: #fb9403;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    @include mq(xxsmall-landscape) {
+        font-size: 1.5rem;
+    }
+}
+
+@mixin underline {
+    width: 100%;
+    height: $underline-height;
+    transform: translateX(-110%);
+    background-color: #fb9403;
+    transition: .25s;
+}
+
+@font-face {
+    font-family: header;
+    src: url("../fonts/GrechenFuemen-Regular.ttf");
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    color: #efefef;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 2.5vh;
+    overflow-x: hidden;
+}
+
+body {
+    background-color: #000;
+    overflow-x: hidden;
+}
+
+.wrapper {
+    width: 90%;
+    margin: 2vh auto;
+
+    @include mq(xxxlarge-landscape) {
+        width: 70%;
+    }
+
+    .header {
+        width: 70%;
+        margin: 0 auto;
+        padding: .5vh;
+        font-family: header;
+        font-weight: bold;
+        text-align: center;
+        text-shadow: 0 0 7px #fb9403, 0 0 10px #fb9403, 0 0 21px #fb9403;
+        border: .7vh solid #fb9403;
+        border-radius: 10px;
+
+        @include mq(xxsmall) {
+            width: 60%;
+        }
+
+        @include mq(large-landscape) {
+            width: 80%;
+        }
+
+        @include mq(xlarge-landscape) {
+            width: 55%;
+        }
+
+        &__name {
+            font-size: 2rem;
+
+            @include mq(small) {
+                font-size: 3rem;
+            }
+
+            @include mq(large) {
+                font-size: 2.5rem;
+            }
+
+            @include mq(xxsmall-landscape) {
+                font-size: 4rem;
+            }
+        }
+
+        &__postscript {
+            @include mq(small) {
+                font-size: 2rem;
+            }
+
+            @include mq(large) {
+                font-size: 1.5rem;
+            }
+
+            @include mq(xxsmall-landscape) {
+                font-size: 2.5rem;
+            }
+        }
+    }
+
+    .translation-wrapper {
+        display: flex;
+        justify-content: right;
+        margin-top: 2vh;
+
+        &__translation-and-underline {
+            overflow-x: hidden;
+            text-align: right;
+
+            .translation-wrapper__translation {
+                @include translation-and-nav;
+            }
+
+            .translation-wrapper__underline {
+                @include underline;
+            }
+
+            @media (hover: hover) {
+                .translation-wrapper__translation:hover+.translation-wrapper__underline {
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+
+    .nav-wrapper {
+        display: flex;
+        justify-content: right;
+        margin: 2-$underline-height auto 1vh;
+
+        &__nav-and-underline {
+            overflow-x: hidden;
+            text-align: right;
+
+            .nav-wrapper__nav {
+                @include translation-and-nav;
+            }
+
+            .nav-wrapper__underline {
+                @include underline;
+            }
+
+            @media (hover: hover) {
+                .nav-wrapper__nav:hover+.nav-wrapper__underline {
+                    transform: translateX(0);
+                }
+            }
+        }
+    }
+
+    .sticky-wrapper {
+        display: flex;
+        justify-content: center;
+        padding: 1vh 1vh;
+
+        &__sticky {
+            display: flex;
+            color: #0f0;
+            font-size: 1.5rem;
+            font-weight: bold;
+            transition: .1s;
+            cursor: pointer;
+
+            @include mq(xxsmall) {
+                font-size: 1.5rem;
+            }
+
+            @include mq(xxsmall-landscape) {
+                font-size: 3rem;
+            }
+
+            .sticky-wrapper__phone-icon-wrapper {
+                span {
+                    margin-right: 1vw;
+                    padding: 1vh;
+                    border: 3px solid #0f0;
+                    border-radius: 35%;
+
+                    @include mq(xxsmall-landscape) {
+                        padding: 1.5vh;
+                    }
+                }
+            }
+
+            .sticky-wrapper__number {
+                display: flex;
+                align-items: center;
+            }
+        }
+
+        @media (hover: hover) {
+            &__sticky:hover {
+                text-shadow: 0 0 20px #0f0, 0 0 20px #0f0;
+            }
+        }
+    }
+
+    .sticky-wrapper--active {
+        position: fixed;
+        width: 100%;
+        left: 0;
+        top: 0;
+        background-color: #000;
+        z-index: 10;
+    }
+
+    .section {
+        margin: 2vh auto;
+        border-bottom: .3vh solid #fff;
+
+        &__title {
+            margin: 2vh auto;
+            transform: translateX(120vw);
+            color: #fb9403;
+            text-align: center;
+            text-transform: uppercase;
+            transition: $transition;
+
+            @include mq(xxsmall-landscape) {
+                font-size: 2.5rem;
+            }
+        }
+
+        &__img-and-text {
+            margin: 2vh auto;
+
+            @include mq(xxsmall-landscape) {
+                display: flex;
+            }
+
+            .section__img-wrapper {
+                margin: 0 auto;
+                transform: translateX(-120vw);
+                transition: $transition;
+
+                @include mq(xxsmall-landscape) {
+                    margin: 0;
+                }
+
+                .section__img {
+                    width: 100%;
+                    height: 100%;
+                    border-radius: 10px;
+                }
+            }
+
+            .section__text {
+                margin-top: 2vh;
+                transition: $transition;
+
+                @include mq(xxsmall-landscape) {
+                    margin-top: 0;
+                    font-size: 1.3rem;
+                    line-height: 6vh;
+                }
+            }
+        }
+
+        &__img-and-text--about {
+            @include mq(xxsmall-landscape) {
+                justify-content: space-between;
+            }
+
+            .section__img-wrapper--about {
+                @include mq(xxsmall-landscape) {
+                    align-self: center;
+                    flex-basis: 25vw;
+                    height: 40vw;
+                }
+
+                @include mq(xxxlarge-landscape) {
+                    flex-basis: 20vw;
+                }
+            }
+
+            .section__text--about {
+                transform: translateX(120vw);
+                text-align: justify;
+
+                @include mq(xxsmall-landscape) {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-between;
+                    flex-basis: 65%;
+                }
+
+                .section__paragraph2,
+                .section__paragraph3 {
+                    margin-top: 2vh;
+                }
+            }
+        }
+
+        &__img-and-text--plane {
+            @include mq(xxsmall-landscape) {
+                justify-content: space-evenly;
+            }
+
+            .section__img-wrapper--plane {
+                @include mq(xxsmall-landscape) {
+                    flex-basis: 40vw;
+                    height: 30w;
+                }
+            }
+
+            .section__text--plane {
+                transform: translateX(120vw);
+                text-align: center;
+
+                @include mq(xxsmall-landscape) {
+                    display: flex;
+                    align-items: center;
+                }
+
+                @include mq(xxsmall-landscape) {
+                    flex-basis: 30%;
+                }
+            }
+        }
+
+        &__img-and-text--contact {
+            @include mq(xxsmall-landscape) {
+                justify-content: space-evenly;
+            }
+
+            .section__fb {
+                transform: translateX(-120vw);
+                transition: $transition;
+            }
+
+            .section__email {
+                transform: translateX(120vw);
+                transition: $transition;
+            }
+
+            .section__icon-wrapper {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 35vw;
+                height: 35vw;
+                margin: 0 auto;
+                font-size: 4rem;
+                border-radius: 30px;
+                transition: .1s;
+                cursor: pointer;
+
+                @include mq(xxsmall) {
+                    width: 15vh;
+                    height: 15vh;
+                    font-size: 4rem;
+                }
+
+                @include mq(xxsmall-landscape) {
+                    width: 20vh;
+                    height: 20vh;
+                }
+
+                @include mq(small-landscape) {
+                    font-size: 5rem;
+                }
+            }
+
+            .section__icon-wrapper--fb {
+                margin-bottom: 2vh;
+                background-color: #00f;
+                border: 1vh solid #008;
+            }
+
+            @media (hover: hover) {
+                .section__icon-wrapper--fb:hover {
+                    box-shadow: 0 0 1vh #00f, 0 0 2vh #00f, 0 0 4vh #00f;
+                }
+            }
+
+            .section__icon-wrapper--email {
+                margin: 2vh auto;
+                background-color: #f00;
+                border: 1vh solid #800;
+
+                @include mq(xxsmall-landscape) {
+                    margin-top: 0;
+                }
+            }
+
+            @media (hover: hover) {
+                .section__icon-wrapper--email:hover {
+                    box-shadow: 0 0 1vh #f00, 0 0 2vh #f00, 0 0 4vh #f00;
+                }
+            }
+
+            .section__text--fb,
+            .section__text--email {
+                text-align: center;
+            }
+        }
+
+        .active {
+            transform: translate(0);
+        }
+    }
+
+    .section--about {
+        margin-top: 1vh;
+        border-top: .3vh solid #fff;
+    }
+
+    .footer {
+        text-align: center;
+    }
+}
+
+.fa-arrow-circle-up {
+    display: none;
+    position: fixed;
+    right: 2vh;
+    bottom: 2vh;
+    color: #ddd;
+    font-size: 2rem;
+    transition: .1s;
+    cursor: pointer;
+}
+
+@media (hover: hover) {
+    .fa-arrow-circle-up:hover {
+        color: #fff;
+    }
+}
